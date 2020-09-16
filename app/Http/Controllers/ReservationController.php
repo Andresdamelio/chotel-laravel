@@ -115,7 +115,8 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function validateAvailability($request) {
+    public function validateAvailability($request)
+    {
         return Validator::make($request->all(), [
             'room_type_id' => 'required|integer',
             'check_in_at' => 'required|date|after:today',

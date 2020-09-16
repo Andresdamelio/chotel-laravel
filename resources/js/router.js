@@ -13,7 +13,11 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: () => import("./components/Layout.vue"),
+      component: () => import("./components/Reservation.vue"),
+    },
+    {
+      path: "/rooms",
+      component: () => import("./components/Rooms.vue"),
     }
   ]
 });
