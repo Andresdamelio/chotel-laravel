@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   scrollBehavior() {
     return { x: 0, y: 0 };
@@ -13,11 +13,13 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: () => import("./components/Reservation.vue"),
+      name: "home",
+      component: () => import("./components/CheckAvailability.vue"),
     },
     {
-      path: "/rooms",
-      component: () => import("./components/Rooms.vue"),
+      path: "/reservations",
+      name: "reservations",
+      component: () => import("./components/Reservation.vue"),
     }
   ]
 });

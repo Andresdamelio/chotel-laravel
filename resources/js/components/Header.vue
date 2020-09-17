@@ -13,7 +13,7 @@
             <router-link to="/" class="nav-link">Make a reservation</router-link>
           </li>
           <li class="nav-item active">
-            <router-link to="/rooms" class="nav-link">Rooms</router-link>
+            <router-link to="/reservations" class="nav-link">Reservations</router-link>
           </li>
         </ul>
       </div>

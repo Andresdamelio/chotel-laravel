@@ -50,7 +50,7 @@ class ReservationController extends Controller
         $validator = $this->validator($request);
 
         if ($validator->fails()) {
-            return $this->json(false, 400, "erros", $validator->errors());
+            return $this->json(false, 400, "errors", $validator->errors());
         }
 
         $reservation = Reservation::find($id);
@@ -58,7 +58,9 @@ class ReservationController extends Controller
         if($reservation) {
             $reservation->update($request->all());
 
-            return $this->json(true, 200, "reservation", $reservation);
+            $reservations = Reservation::all();
+
+            return $this->json(true, 200, "reservations", $reservations);
         }
 
         return $this->json(false, 404, "error", "A reservation with the specified id was not found");
@@ -77,7 +79,9 @@ class ReservationController extends Controller
 
             $reservation->delete();
 
-            return $this->json(true, 200, "reservation", $reservation);
+            $reservations = Reservation::all();
+
+            return $this->json(true, 200, "reservations", $reservations);
         }
 
         return $this->json(false, 404, "error", "A reservation with the specified id was not found");
@@ -99,8 +103,8 @@ class ReservationController extends Controller
     public function totalReservationsByType($request)
     {
         $reservations = Reservation::where('room_type_id', '=', $request->room_type_id)
-            ->whereDate('check_in_at', '<=', Carbon::create($request->check_in_at))
-            ->whereDate('check_out_at', '>=', Carbon::create($request->check_out_at)) ->count();
+            ->where('check_in_at', '<=', Carbon::create($request->check_in_at))
+            ->where('check_out_at', '>=', Carbon::create($request->check_out_at))->count();
 
         return 5 - $reservations;
     }

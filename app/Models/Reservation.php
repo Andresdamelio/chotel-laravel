@@ -9,6 +9,8 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    protected $with = ['room'];
+
     protected $fillable = ['client_name', 'check_in_at', 'check_out_at', 'room_type_id'];
 
     public function room()
